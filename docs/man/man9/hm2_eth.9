@@ -38,8 +38,10 @@ hm2_eth \- LinuxCNC HAL driver for the Mesa Electronics Ethernet Anything IO boa
 \fBconfig\fR [default: ""]
 HostMot2 config strings, described in the hostmot2(9) manpage.
 .TP
-\fBboard_ip\fR [default: ""]
-The IP address of the board(s), separated by commas.  As shipped, the board address is 192.168.1.121.
+\fBboard_ip\fR [default: "10.10.10.10"]
+The IP address of the board(s), separated by commas.  As of April 2015, Mesa
+ships board with address 10.10.10.10.  Older boards may have been shipped with
+board address is 192.168.1.121.
 .SH DESCRIPTION
 
 hm2_eth is a device driver that interfaces Mesa's ethernet
@@ -59,13 +61,13 @@ between the PC and the board.  Wireless and USB network interfaces are not
 suitable.
 
 These instructions assume your dedicated network interface is "eth1",
-192.168.1/24 is an unused private network, that the hostmot2 board is using the
-default address of 192.168.1.121, that you are using Debian 7 or similar, and
+10.10.10/24 is an unused private network, that the hostmot2 board is using the
+address of 10.10.10.10, that you are using Debian 7 or similar, and
 that you do not otherwise use iptables.  If any of these are false, you will
 need to modify the instructions accordingly.  After following all the
 instructions, reboot so that the changes take effect.
 
-It is particularly important to check that the network 192.168.1/24 is not
+It is particularly important to check that the network 10.10.10/24 is not
 already the private network used by your internet router, because this is a
 commonly-used value.  If you use another network, you will also need to
 reconfigure the hostmot2 card to use an IP address on that network by using the
@@ -74,7 +76,6 @@ one of the networks in the
 .UR http://en.wikipedia.org/wiki/IPv4#Private_networks
 Private IPv4 address space.
 .UE
-One common alternative is PC address 10.10.10.1, hostmot2 address 10.10.10.10.
 
 Use of the dedicated ethernet interface while linuxcnc is running can cause
 violation of realtime guarantees.  The steps below mitigate most accidental
@@ -87,7 +88,7 @@ static address:
 .EX
 auto eth1
 iface eth1 inet static
-    address 192.168.1.1
+    address 10.10.10.1
 .EE
 
 .SS Disable IPv6 on the dedicated interface

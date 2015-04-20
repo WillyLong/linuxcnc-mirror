@@ -5430,9 +5430,9 @@ Clicking 'existing custom program' will aviod this warning. "),False):
             if '7i43' in board1:
                 mesa1_ioaddr = ' ioaddr=%s ioaddr_hi=0 epp_wide=1'% self.d.mesa1_parportaddrs
             if '7i76e' in board0:
-                board0_ip = ''' board_ip="192.168.1.121"'''
+                board0_ip = ''' board_ip="10.10.10.10"'''
             if '7i76e' in board1:
-                board1_ip = ''' board_ip="192.168.1.121"'''
+                board1_ip = ''' board_ip="10.10.10.10"'''
             if not "5i25" in board0:
                 firmstring0 = "firmware=hm2/%s/%s.BIT" % (directory0, firm0)
             if not "5i25" in board1:

@@ -27,7 +27,7 @@ parser = optparse.OptionParser("%prog [options] [commands]",
     description="Communicate with Mesa ethernet cards using the LBP16 protocol")
 parser.add_option("-i", "--ip", dest="sip",
     help="IP address of board",
-    metavar="X.Y.Z.W", default="192.168.1.121")
+    metavar="X.Y.Z.W", default="10.10.10.10")
 parser.add_option("-p", "--port", dest="sport",
     help="UDP port of board", type="int", default=27181)
 parser.add_option("-t", "--timeout", dest="timeout",

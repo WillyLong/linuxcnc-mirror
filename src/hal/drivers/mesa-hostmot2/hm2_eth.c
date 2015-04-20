@@ -52,7 +52,7 @@ MODULE_DESCRIPTION("Driver for HostMot2 on the 7i80 Anything I/O board from Mesa
 MODULE_SUPPORTED_DEVICE("Mesa-AnythingIO-7i80");
 #endif
 
-static char *board_ip;
+static char *board_ip = "10.10.10.10";
 RTAPI_MP_STRING(board_ip, "ip address of ethernet board(s)");
 
 static char *config[MAX_ETH_BOARDS];
@@ -212,7 +212,7 @@ static int install_iptables(int sockfd) {
     if(res < 0) return res;
 
     // without this rule, 'ping' spews a lot of messages like
-    //    From 192.168.1.1 icmp_seq=5 Packet filtered
+    //    From 10.10.10.1 icmp_seq=5 Packet filtered
     // many times for each ping packet sent.  With this rule,
     // ping prints 'ping: sendmsg: Operation not permitted' once
     // per second.
