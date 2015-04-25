@@ -5,8 +5,6 @@
 #error This is intended as a userspace component only.
 #endif
 
-#define EXCLUSIVE_OPEN_WORKAROUND 1			// try to lockf() the device to prevent simultaneous access
-
 #define DEBUG
 //#undef DEBUG
 
