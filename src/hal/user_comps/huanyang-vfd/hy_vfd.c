@@ -152,7 +152,6 @@ static struct option long_options[] = {
 		{"rate", 1, 0, 'r'},
 		{"stopbits", 1, 0, 's'},
 		{"target", 1, 0, 't'},
-		{"verbose", 0, 0, 'v'},
 		{0,0,0,0}
 };
 
@@ -192,12 +191,9 @@ void usage(int argc, char **argv) {
 			"    Set number of data bits to <n>, where n must be from 5 to 8 inclusive\n"
 			"-d or --device <path> (default /dev/ttyS0)\n"
 			"    Set the name of the serial device node to use\n"
-			"-v or --verbose\n"
-			"    Turn on debug messages.  Note that if there are serial errors, this may become annoying.\n"
-			"    At the moment, it doesn't make much difference most of the time.\n"
 			"-g or --debug\n"
-			"    Turn on debugging messages.  This will also set the verbose flag.  Debug mode will cause\n"
-			"    all modbus messages to be printed in hex on the terminal.\n"
+			"    Turn on debugging messages.  Debug mode will cause all modbus messages\n"
+                        "    to be printed in hex on the terminal.\n"
 			"-n or --name <string> (default hy_vfd)\n"
 			"    Set the name of the HAL module.  The HAL comp name will be set to <string>, and all pin\n"
 			"    and parameter names will begin with <string>.\n"
@@ -563,7 +559,6 @@ int main(int argc, char **argv)
 			break;
 		case 'g':
 			debug = 1;
-			//verbose = 1;
 			break;
 		case 'n':   // module base name
 			if (strlen(optarg) > HAL_NAME_LEN-20) {
@@ -609,9 +604,6 @@ int main(int argc, char **argv)
 			}
 			slave = argvalue;
 			break;
-		case 'v':   // verbose mode (print modbus errors and other information), default 0
-			//verbose = 1;
-			break;
 		case 'h':
 		default:
 			usage(argc, argv);
@@ -621,7 +613,7 @@ int main(int argc, char **argv)
 	}
 	
 	if (debug) {
-		printf("%s: device='%s', baud=%d, bits=%d, parity='%s', stopbits=%d, address=%d, verbose=%d, PID=%d\n",
+		printf("%s: device='%s', baud=%d, bits=%d, parity='%s', stopbits=%d, address=%d, debug=%d, PID=%d\n",
 				modname,device, baud, bits, parity, stopbits, slave, debug, getpid());
 	}
 	
